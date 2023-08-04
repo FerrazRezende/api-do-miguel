@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idade do Miguel</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const diasTag = document.querySelector("#dias");
+            const mesesTag = document.querySelector("#meses");
+            const anosTag = document.querySelector("#anos");
+            const horasTag = document.querySelector("#horas");
+            const minutosTag = document.querySelector("#minutos");
+
+            fetch("http://127.0.0.1:8080/")
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data.diferenca_tempo)
+
+                var dataDeNascimento = data.idade.split(' ')
+                var horaDoNascimento = data.diferenca_tempo.split(' ')
+
+                console.log(horaDoNascimento)
+                var dict = {}
+
+                var anos = dataDeNascimento[1]
+                var meses = dataDeNascimento[3]
+                var dias = dataDeNascimento[6]
+
+                var horas = horaDoNascimento[3]
+                var minutos = horaDoNascimento[5]
+                
+                dict[dias] = dataDeNascimento[5]
+                dict[meses] = dataDeNascimento[2]
+                dict[anos] = dataDeNascimento[0]
+
+                dict[horas] = horaDoNascimento[2] 
+                dict[minutos] = horaDoNascimento[4]
+
+                anosTag.innerHTML = dict[anos] + " Anos"
+                mesesTag.innerHTML = dict[meses] + " Meses"
+                diasTag.innerHTML = dict[dias] + " Dias"
+
+                minutosTag.innerHTML = dict[minutos] + " Minutos"
+                horasTag.innerHTML = dict[horas] + " Horas"
+
+            })
+        })
+
+
+
+    </script>
+
+    <h1>
+        Idade do Miguel:
+    </h1>
+    <div>
+        <p id="dias"></p>
+        <p id="meses"></p>
+        <p id="anos"></p>
+    </div>
+
+    <section>
+        <p id="horas"></p>
+        <p id="minutos"></p>
+    </section>
+
+    <style>
+        body {
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 5rem;
+            margin-top: 15%;
+        }
+
+        p {
+            font-size: 3rem;
+            text-align: center;
+            color: white;
+            margin: 5%; 
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section p{
+            font-size: 2rem;
+        }
+    </style>
+</body>
+</html>
