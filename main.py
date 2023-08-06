@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from starlette.responses import HTMLResponse
 from datetime import datetime
 
 app = FastAPI()
@@ -14,6 +15,12 @@ async def read_root():
     diferenca_tempo = calcular_diferenca_de_tempo(data_atual, data_nascimento)
 
     return {"idade": idade, "diferenca_tempo": diferenca_tempo}
+
+@app.get("/index")
+async def get_index():
+    with open("frontend/index.html") as f:
+        html_content = f.read()
+    return HTMLResponse(content=html_content)
 
 
 
@@ -38,3 +45,4 @@ def calcular_diferenca_de_tempo(data_atual, data_nascimento):
 
     diferenca_tempo = f"{dias} dias, {horas} horas, {minutos} minutos"
     return diferenca_tempo
+
