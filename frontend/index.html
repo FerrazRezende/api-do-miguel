@@ -14,7 +14,7 @@
             const horasTag = document.querySelector("#horas");
             const minutosTag = document.querySelector("#minutos");
 
-            fetch("http://127.0.0.1:8000")
+            fetch("https://api-do-miguel.onrender.com/")
             .then(response => response.json())
             .then(data => {
 
@@ -76,12 +76,12 @@
         h1 {
             text-align: center;
             color: white;
-            font-size: 2rem;
+            font-size: 5rem;
             margin-top: 15%;
         }
 
         p {
-            font-size: 1.5rem;
+            font-size: 3rem;
             text-align: center;
             color: white;
             margin: 5%; 
@@ -100,7 +100,7 @@
         }
 
         section p{
-            font-size: 1rem;
+            font-size: 2rem;
         }
     </style>
 </body>
