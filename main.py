@@ -1,14 +1,17 @@
 from fastapi import FastAPI
 from starlette.responses import HTMLResponse
 from datetime import datetime
+import pytz
 
 app = FastAPI()
 
 @app.get("/")
 async def read_root():
-    
+
+    fuso_horario = pytz.timezone('America/Sao_Paulo')
+
     data_nascimento = datetime(2023, 7, 24, 14, 56)
-    data_atual = datetime.now()
+    data_atual = datetime.now(fuso_horario)
 
     idade = calcular_idade_miguel(data_atual, data_nascimento)
 
