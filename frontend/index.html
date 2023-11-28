@@ -14,38 +14,12 @@
             const horasTag = document.querySelector("#horas");
             const minutosTag = document.querySelector("#minutos");
 
-            fetch("https://api-do-miguel.onrender.com/")
+            fetch("127.0.0.1:8000/")
             .then(response => response.json())
             .then(data => {
 
-                console.log(data.diferenca_tempo)
+                console.log(data)
 
-                var dataDeNascimento = data.idade.split(' ')
-                var horaDoNascimento = data.diferenca_tempo.split(' ')
-
-                console.log(horaDoNascimento)
-                var dict = {}
-
-                var anos = dataDeNascimento[1]
-                var meses = dataDeNascimento[3]
-                var dias = dataDeNascimento[6]
-
-                var horas = horaDoNascimento[3]
-                var minutos = horaDoNascimento[5]
-                
-                dict[dias] = dataDeNascimento[5]
-                dict[meses] = dataDeNascimento[2]
-                dict[anos] = dataDeNascimento[0]
-
-                dict[horas] = horaDoNascimento[2] 
-                dict[minutos] = horaDoNascimento[4]
-
-                anosTag.innerHTML = dict[anos] + " Anos"
-                mesesTag.innerHTML = dict[meses] + " Meses"
-                diasTag.innerHTML = dict[dias] + " Dias"
-
-                minutosTag.innerHTML = dict[minutos] + " Minutos"
-                horasTag.innerHTML = dict[horas] + " Horas"
 
             })
         })

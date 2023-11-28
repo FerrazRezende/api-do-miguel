@@ -1,6 +1,8 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import pytz
 
 app = FastAPI()
@@ -15,9 +17,13 @@ async def read_root():
 
     idade = calcular_idade_miguel(data_atual, data_nascimento)
 
-    diferenca_tempo = calcular_diferenca_de_tempo(data_atual, data_nascimento)
 
-    return {"idade": idade, "diferenca_tempo": diferenca_tempo}
+    return {"anos": idade.years,
+            "meses": idade.months,
+            "dias": idade.days,
+            "horas": idade.hours,
+            "minutos": idade.minutes,
+            "segundos": idade.seconds}
 
 @app.get("/index")
 async def get_index():
@@ -28,24 +34,7 @@ async def get_index():
 
 
 def calcular_idade_miguel(data_atual, data_nascimento):
-    delta = data_atual - data_nascimento
+    diff = relativedelta(data_atual, data_nascimento)
+    return diff
 
-    anos = delta.days // 365
-    meses = (delta.days % 365) // 30
-    dias = (delta.days % 365) % 30
-
-    idade = f"{anos} anos, {meses} meses e {dias} dias"
-    return idade
-
-
-def calcular_diferenca_de_tempo(data_atual, data_nascimento):
-
-    delta_tempo = data_atual - data_nascimento
-
-    dias = delta_tempo.days
-    horas = delta_tempo.seconds // 3600
-    minutos = (delta_tempo.seconds // 60) % 60
-
-    diferenca_tempo = f"{dias} dias, {horas} horas, {minutos} minutos"
-    return diferenca_tempo
 
