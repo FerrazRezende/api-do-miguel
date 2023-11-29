@@ -14,13 +14,16 @@
             const horasTag = document.querySelector("#horas");
             const minutosTag = document.querySelector("#minutos");
 
-            fetch("127.0.0.1:8080/")
+            fetch("https://api-do-miguel.onrender.com/")
             .then(response => response.json())
             .then(data => {
-
                 console.log(data)
+                diasTag.innerHTML = "Dias: " + data.dias
+                mesesTag.innerHTML = "Meses: " + data.meses
+                anosTag.innerHTML = "Anos: " + data.anos
 
-
+                horasTag.innerHTML = "Horas: " + data.horas
+                minutosTag.innerHTML = "Minutos: " + data.minutos
             })
         })
 
