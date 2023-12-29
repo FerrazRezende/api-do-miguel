@@ -7,6 +7,21 @@ import pytz
 
 app = FastAPI()
 
+origins = [
+    "http://matheusferraz.tech",
+    "https://ferrazrezende.github.io",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/")
 async def read_root():
 
