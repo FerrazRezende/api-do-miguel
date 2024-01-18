@@ -33,10 +33,10 @@ async def read_root():
 
     return {"anos": idade.years,
             "meses": idade.months,
+            "semanas": idade.weeks,
             "dias": idade.days,
             "horas": idade.hours,
-            "minutos": idade.minutes,
-            "segundos": idade.seconds}
+            "minutos": idade.minutes,}
 
 @app.get("/index")
 async def get_index():
