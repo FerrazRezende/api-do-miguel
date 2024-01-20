@@ -8,8 +8,7 @@ import pytz
 app = FastAPI()
 
 origins = [
-    "http://localhost:8080",
-    "http://matheusferraz.tech",
+    "https://matheusferraz.tech",
     "https://ferrazrezende.github.io",
 ]
 
