@@ -72,7 +72,7 @@
     }
 </style>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        function loopComDelay() {
             const diasTag = document.querySelector("#dias");
             const mesesTag = document.querySelector("#meses");
             const anosTag = document.querySelector("#anos");
@@ -80,21 +80,22 @@
             const horasTag = document.querySelector("#horas");
             const minutosTag = document.querySelector("#minutos");
 
-            fetch("https://api-do-miguel.onrender.com/")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                semanasTag.innerHTML = data.semanas
-                mesesTag.innerHTML = data.meses
-                anosTag.innerHTML = data.anos
-                diasTag.innerHTML = data.dias
-                horasTag.innerHTML = data.horas
-                minutosTag.innerHTML = data.minutos
-            })
-        })
-
-
-
+            fetch("http://localhost:8080/")
+            .then(r => r.json())
+            .then(dados => {
+                    console.log(dados)
+                    diasTag.innerHTML = dados.dias;
+                    mesesTag.innerHTML = dados.meses;
+                    anosTag.innerHTML = dados.anos;
+                    semanasTag.innerHTML = dados.semanas;
+                    horasTag.innerHTML = dados.horas;
+                    minutosTag.innerHTML = dados.minutos;
+                    console.log(dados)
+                });
+            setTimeout(loopComDelay, 60000)
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            loopComDelay()
     </script>
 
 <body>

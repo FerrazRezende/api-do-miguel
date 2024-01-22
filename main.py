@@ -12,6 +12,9 @@ origins = [
     "https://ferrazrezende.github.io",
 ]
 
+
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
