@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DMMono">
 </head>
+<script>
+    function loopComDelay() {
+        const diasTag = document.querySelector("#dias");
+        const mesesTag = document.querySelector("#meses");
+        const anosTag = document.querySelector("#anos");
+        const semanasTag = document.querySelector("#semanas");
+        const horasTag = document.querySelector("#horas");
+        const minutosTag = document.querySelector("#minutos");
+
+        fetch("https://api-do-miguel.onrender.com/")
+        .then(r => r.json())
+        .then(dados => {
+                console.log(dados)
+                diasTag.innerHTML = dados.dias;
+                mesesTag.innerHTML = dados.meses;
+                anosTag.innerHTML = dados.anos;
+                semanasTag.innerHTML = dados.semanas;
+                horasTag.innerHTML = dados.horas;
+                minutosTag.innerHTML = dados.minutos;
+                console.log(dados)
+            });
+        setTimeout(loopComDelay, 30000)
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        loopComDelay()
+        });
+</script>
 <style>
 
     a {
@@ -15,7 +42,7 @@
 
     body {
         background-color: #40e0d0;
-        height: 105vh;
+        height: 100vh;
         width: 100vw;
     }
     
@@ -70,66 +97,64 @@
         text-align: center;
         width: 104px;
     }
-</style>
-    <script>
-        function loopComDelay() {
-            const diasTag = document.querySelector("#dias");
-            const mesesTag = document.querySelector("#meses");
-            const anosTag = document.querySelector("#anos");
-            const semanasTag = document.querySelector("#semanas");
-            const horasTag = document.querySelector("#horas");
-            const minutosTag = document.querySelector("#minutos");
 
-            fetch("https://api-do-miguel.onrender.com/")
-            .then(r => r.json())
-            .then(dados => {
-                    console.log(dados)
-                    diasTag.innerHTML = dados.dias;
-                    mesesTag.innerHTML = dados.meses;
-                    anosTag.innerHTML = dados.anos;
-                    semanasTag.innerHTML = dados.semanas;
-                    horasTag.innerHTML = dados.horas;
-                    minutosTag.innerHTML = dados.minutos;
-                    console.log(dados)
-                });
-            setTimeout(loopComDelay, 30000)
+    .marquee:hover {
+        animation-play-state: paused;
+    }
+
+    .marquee h2 {
+        animation: marquee 3s linear infinite;
+    }
+
+    .marquee {
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+        min-width: 100px;
+    }
+
+    @media (min-width: 450px) {
+        .marquee h2 {
+            animation: none;
         }
-        document.addEventListener("DOMContentLoaded", () => {
-            loopComDelay()
-            });
-    </script>
+    }
 
+    @keyframes marquee {
+        0%,100%  { transform: translate(0, 0); }
+        50% { transform: translate(-20%, 0); }
+    }
+
+</style>
 <body>
     <div class="container is-widescreen is-max-desktop">
         <h1 class="p-6">Idade do Miguel</h1>
-        <section>
-            <div class="m-5 card-maior">
+        <section class="pr-4">
+            <div class="m-3 card-maior">
                 <h2 class="p-2">Anos:</h2>
-                <p id="anos"></p>
+                <p>5</p>
             </div>
-            <div class="m-5 card-maior">
+            <div class="m-3 card-maior">
                 <h2 class="p-2">Meses:</h2>
-                <p id="meses"></p>
+                <p>5</p>
             </div>
-            <div class="m-5 card-maior">
+            <div class="m-3 card-maior marquee">
                 <h2 class="p-1 mt-1">Semanas:</h2>
-                <p id="semanas"></p>
+                <p>5</p>
             </div>
         </section>
-        <section>
+        <section class="pr-4">
             <div class="m-3 card-menor">
                 <h3 class="p-2">Dias:</h3>
-                <span id="dias"></span>
+                <span>5</span>
             </div>
             <div class="m-3 card-menor">
-                <h3 class="p-2">Horas</h3>
-                <span id="horas"></span>
+                <h3 class="p-2">Horas:</h3>
+                <span>5</span>
             </div>
             <div class="m-3 card-menor">
                 <h3 class="p-2">Minutos:</h3>
-                <span id="minutos"></span>
+                <span>5</span>
             </div>
-
         </section>
         <div class="buttons mt-6">
             <a href="https://github.com/FerrazRezende" target="_blank">
