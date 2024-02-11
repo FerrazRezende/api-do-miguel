@@ -7,33 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DMMono">
 </head>
-<script>
-    function loopComDelay() {
-        const diasTag = document.querySelector("#dias");
-        const mesesTag = document.querySelector("#meses");
-        const anosTag = document.querySelector("#anos");
-        const semanasTag = document.querySelector("#semanas");
-        const horasTag = document.querySelector("#horas");
-        const minutosTag = document.querySelector("#minutos");
-
-        fetch("https://api-do-miguel.onrender.com/")
-        .then(r => r.json())
-        .then(dados => {
-                console.log(dados)
-                diasTag.innerHTML = dados.dias;
-                mesesTag.innerHTML = dados.meses;
-                anosTag.innerHTML = dados.anos;
-                semanasTag.innerHTML = dados.semanas;
-                horasTag.innerHTML = dados.horas;
-                minutosTag.innerHTML = dados.minutos;
-                console.log(dados)
-            });
-        setTimeout(loopComDelay, 30000)
-    }
-    document.addEventListener("DOMContentLoaded", () => {
-        loopComDelay()
-        });
-</script>
 <style>
 
     a {
@@ -126,6 +99,33 @@
 
 </style>
 <body>
+    <script>
+        function loopComDelay() {
+            const diasTag = document.querySelector("#dias");
+            const mesesTag = document.querySelector("#meses");
+            const anosTag = document.querySelector("#anos");
+            const semanasTag = document.querySelector("#semanas");
+            const horasTag = document.querySelector("#horas");
+            const minutosTag = document.querySelector("#minutos");
+    
+            fetch("https://api-do-miguel.onrender.com/")
+            .then(r => r.json())
+            .then(dados => {
+                    console.log(dados)
+                    diasTag.innerHTML = dados.dias;
+                    mesesTag.innerHTML = dados.meses;
+                    anosTag.innerHTML = dados.anos;
+                    semanasTag.innerHTML = dados.semanas;
+                    horasTag.innerHTML = dados.horas;
+                    minutosTag.innerHTML = dados.minutos;
+                    console.log(dados)
+                });
+            setTimeout(loopComDelay, 30000)
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            loopComDelay()
+            });
+    </script>
     <div class="container is-widescreen is-max-desktop">
         <h1 class="p-6">Idade do Miguel</h1>
         <section class="pr-4">
