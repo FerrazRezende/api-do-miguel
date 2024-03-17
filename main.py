@@ -10,6 +10,7 @@ app = FastAPI()
 origins = [
     "https://matheusferraz.tech",
     "https://ferrazrezende.github.io",
+
 ]
 
 
@@ -34,12 +35,15 @@ async def read_root():
     idade = calcular_idade_miguel(data_atual, data_nascimento)
 
 
-    return {"anos": idade.years,
-            "meses": idade.months,
-            "semanas": idade.weeks,
-            "dias": idade.days,
-            "horas": idade.hours,
-            "minutos": idade.minutes,}
+    return {
+        "anos": idade.years,
+        "meses": idade.months,
+        "semanas": idade.weeks,
+        "dias": idade.days,
+        "horas": idade.hours,
+        "minutos": idade.minutes,
+        "segundos": idade.seconds
+    }
 
 @app.get("/index")
 async def get_index():
